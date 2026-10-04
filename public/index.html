@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donny Soh — Portfolio</title>
+<meta name="description" content="Personal portfolio of Donny Soh — artificial intelligence, machine learning and software engineering.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to content</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="#hero">DS</a>
+    <ul class="nav__list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#repos">Repos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <!-- EDIT: your name -->
+      <h1 class="hero__name">Donny Soh</h1>
+      <!-- EDIT: one-line professional tagline -->
+      <p class="hero__tagline">
+        Artificial intelligence and machine learning educator &amp; researcher,
+        building practical systems and teaching others to do the same.
+      </p>
+      <ul class="hero__links">
+        <li><a class="btn btn--primary" href="mailto:donny.soh@singaporetech.edu.sg">Email</a></li>
+        <li><a class="btn" href="https://github.com/donnysohsit" rel="me noopener" target="_blank">GitHub</a></li>
+        <!-- EDIT: replace with your real LinkedIn URL -->
+        <li><a class="btn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" rel="me noopener" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="section">
+    <div class="container container--narrow">
+      <h2 class="section__title">About</h2>
+      <!-- EDIT: your professional bio -->
+      <p>
+        I work at the intersection of applied artificial intelligence and software
+        engineering, with a focus on turning research ideas into systems people can
+        actually use. My day-to-day spans machine learning experimentation, data
+        pipelines, and the tooling that makes results legible to other people.
+      </p>
+      <p>
+        I care about clear explanations as much as working code. A good deal of my
+        work involves teaching and mentoring — breaking down sequence models,
+        anomaly detection and practical AI engineering for people meeting them for
+        the first time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="section section--alt">
+    <div class="container">
+      <h2 class="section__title">Skills</h2>
+      <!-- EDIT: your key skills / areas of focus -->
+      <div class="grid grid--skills">
+        <article class="skill">
+          <h3 class="skill__title">Machine Learning</h3>
+          <p class="skill__body">Sequence models, curriculum learning, anomaly detection, model evaluation.</p>
+        </article>
+        <article class="skill">
+          <h3 class="skill__title">Languages</h3>
+          <p class="skill__body">Python, JavaScript, SQL, HTML &amp; CSS.</p>
+        </article>
+        <article class="skill">
+          <h3 class="skill__title">Data &amp; Tooling</h3>
+          <p class="skill__body">Jupyter, pandas, NumPy, PyTorch, data visualisation and dashboards.</p>
+        </article>
+        <article class="skill">
+          <h3 class="skill__title">Engineering</h3>
+          <p class="skill__body">Git and GitHub Actions, CI/CD, REST APIs, static site delivery.</p>
+        </article>
+        <article class="skill">
+          <h3 class="skill__title">Teaching</h3>
+          <p class="skill__body">Curriculum design, technical writing, mentoring and workshop delivery.</p>
+        </article>
+        <article class="skill">
+          <h3 class="skill__title">Research</h3>
+          <p class="skill__body">Experiment design, reproducible notebooks, literature review and write-up.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section__title">Projects</h2>
+      <p class="section__lede">A few things I have built that I am happy to talk through.</p>
+      <!-- EDIT: curate these; the descriptions below are drafts -->
+      <div class="grid grid--projects">
+        <article class="card">
+          <h3 class="card__title">COVID-19 Dashboard</h3>
+          <p class="card__body">An interactive dashboard for exploring COVID-19 case data and trends.</p>
+          <a class="card__link" href="https://github.com/donnysohsit/covid-19" rel="noopener" target="_blank">View project <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Curriculum Learning with Mamba</h3>
+          <p class="card__body">Experiments applying curriculum learning strategies to Mamba state-space sequence models.</p>
+          <a class="card__link" href="https://github.com/donnysohsit/CurriculumLearningMamba" rel="noopener" target="_blank">View project <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Applied AI Teaching Materials</h3>
+          <p class="card__body">Notebooks and worked examples used to teach applied artificial intelligence.</p>
+          <a class="card__link" href="https://github.com/donnysohsit/SIT-AAI" rel="noopener" target="_blank">View project <span aria-hidden="true">&rarr;</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REPOS ===================== -->
+  <section id="repos" class="section section--alt">
+    <div class="container">
+      <h2 class="section__title">Repositories</h2>
+      <p class="section__lede">My most recently updated public repositories, straight from GitHub.</p>
+      <p id="repos-status" class="status" role="status">Loading repositories&hellip;</p>
+      <div id="repos-grid" class="grid grid--repos"></div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="section">
+    <div class="container container--narrow">
+      <h2 class="section__title">Contact</h2>
+      <p class="section__lede">The quickest way to reach me is email.</p>
+      <ul class="contact__list">
+        <li>
+          <span class="contact__label">Email</span>
+          <a href="mailto:donny.soh@singaporetech.edu.sg">donny.soh@singaporetech.edu.sg</a>
+        </li>
+        <li>
+          <span class="contact__label">GitHub</span>
+          <a href="https://github.com/donnysohsit" rel="me noopener" target="_blank">github.com/donnysohsit</a>
+        </li>
+        <li>
+          <span class="contact__label">LinkedIn</span>
+          <!-- EDIT: replace with your real LinkedIn URL -->
+          <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" rel="me noopener" target="_blank">linkedin.com/in/YOUR-LINKEDIN</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year">2026</span> Donny Soh &middot; Built with plain HTML, CSS and JavaScript.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
