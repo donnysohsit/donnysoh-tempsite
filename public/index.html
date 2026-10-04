@@ -8,6 +8,17 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<script>
+/* Apply the saved theme before first paint so the page never flashes the
+   wrong one. Kept inline and tiny on purpose; the toggle lives in main.js. */
+(function () {
+  try {
+    var saved = sessionStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') document.body.classList.add(saved);
+  } catch (e) { /* storage blocked — fall back to the system preference */ }
+})();
+</script>
+
 <a class="skip-link" href="#hero">Skip to content</a>
 
 <header class="site-header">
@@ -20,6 +31,10 @@
       <li><a href="#repos">Repos</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+      <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span>
+      <span class="theme-toggle__label">Dark mode</span>
+    </button>
   </nav>
 </header>
 

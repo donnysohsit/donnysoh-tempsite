@@ -2,6 +2,7 @@
    Tokens
    ============================================================ */
 :root {
+  /* Light palette — also the active theme by default. */
   --bg:            #ffffff;
   --bg-alt:        #f6f7f9;
   --surface:       #ffffff;
@@ -11,6 +12,17 @@
   --accent:        #1f5fd6;
   --accent-contrast: #ffffff;
   --shadow:        0 1px 2px rgba(16, 24, 40, .05), 0 6px 20px rgba(16, 24, 40, .06);
+
+  /* Dark palette — values live here once; the mappings below activate them. */
+  --dark-bg:            #0f1215;
+  --dark-bg-alt:        #15191e;
+  --dark-surface:       #171b21;
+  --dark-border:        #272d35;
+  --dark-text:          #e8eaed;
+  --dark-text-muted:    #a0a8b4;
+  --dark-accent:        #78a9ff;
+  --dark-accent-contrast: #0f1215;
+  --dark-shadow:        0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .35);
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, "Noto Sans", sans-serif;
@@ -23,17 +35,32 @@
   --section-y: clamp(3.5rem, 8vw, 6rem);
 }
 
+/* Explicit choice: body.dark wins over the system preference below.
+   body.light exists so the toggle can force light on a dark-set OS. */
+body.dark {
+  --bg:              var(--dark-bg);
+  --bg-alt:          var(--dark-bg-alt);
+  --surface:         var(--dark-surface);
+  --border:          var(--dark-border);
+  --text:            var(--dark-text);
+  --text-muted:      var(--dark-text-muted);
+  --accent:          var(--dark-accent);
+  --accent-contrast: var(--dark-accent-contrast);
+  --shadow:          var(--dark-shadow);
+}
+
+/* System preference, used until the visitor picks a side (and when JS is off). */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg:            #0f1215;
-    --bg-alt:        #15191e;
-    --surface:       #171b21;
-    --border:        #272d35;
-    --text:          #e8eaed;
-    --text-muted:    #a0a8b4;
-    --accent:        #78a9ff;
-    --accent-contrast: #0f1215;
-    --shadow:        0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .35);
+  body:not(.light):not(.dark) {
+    --bg:              var(--dark-bg);
+    --bg-alt:          var(--dark-bg-alt);
+    --surface:         var(--dark-surface);
+    --border:          var(--dark-border);
+    --text:            var(--dark-text);
+    --text-muted:      var(--dark-text-muted);
+    --accent:          var(--dark-accent);
+    --accent-contrast: var(--dark-accent-contrast);
+    --shadow:          var(--dark-shadow);
   }
 }
 
@@ -163,8 +190,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: .6rem var(--gutter);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: .5rem 1rem;
   flex-wrap: wrap;
 }
 
@@ -178,6 +204,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: 8px;
   padding: .3rem .55rem;
   flex: none;
+  margin-right: auto; /* pushes the links and theme toggle to the right */
 }
 
 .nav__list {
@@ -202,11 +229,47 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--bg-alt);
 }
 
+/* ---- theme toggle ---- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  flex: none;
+  padding: .35rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: .875rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.theme-toggle__icon {
+  font-size: .95em;
+  line-height: 1;
+}
+
 @media (max-width: 30rem) {
   .nav { justify-content: center; }
   .nav__brand { display: none; }
   .nav__list { justify-content: center; }
   .nav__list a { padding: .3rem .45rem; font-size: .875rem; }
+  /* Icon only, but keep the label for screen readers and keep the tap
+     target comfortably large. */
+  .theme-toggle__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .theme-toggle {
+    justify-content: center;
+    padding: .5rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+  .theme-toggle__icon { font-size: 1.1em; }
 }
 
 /* ============================================================
