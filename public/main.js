@@ -7,6 +7,63 @@
     'https://api.github.com/users/' + GITHUB_USER +
     '/repos?sort=updated&per_page=12';
 
+  /* ---------- theme toggle ---------- */
+  // The inline script in index.html has already applied any saved choice;
+  // this only wires up the button and keeps the label in sync.
+  var themeToggle = document.getElementById('theme-toggle');
+
+  if (themeToggle) {
+    var body = document.body;
+
+    var prefersDark = window.matchMedia
+      ? window.matchMedia('(prefers-color-scheme: dark)')
+      : null;
+
+    function isDark() {
+      if (body.classList.contains('dark')) return true;
+      if (body.classList.contains('light')) return false;
+      return !!(prefersDark && prefersDark.matches);
+    }
+
+    function syncButton() {
+      var dark = isDark();
+      themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      themeToggle.querySelector('.theme-toggle__icon').textContent =
+        dark ? '☀' : '☾';           // sun when dark, moon when light
+      themeToggle.querySelector('.theme-toggle__label').textContent =
+        dark ? 'Light mode' : 'Dark mode';
+      themeToggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+
+    themeToggle.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+
+      // 'dark' is the class the styles key off; 'light' is what lets an
+      // explicit light choice override a dark system preference.
+      body.classList.toggle('dark', next === 'dark');
+      body.classList.toggle('light', next === 'light');
+
+      try {
+        sessionStorage.setItem('theme', next);
+      } catch (e) {
+        // Private mode or blocked storage: the choice still applies to this page.
+      }
+
+      syncButton();
+    });
+
+    // Follow the system preference until the visitor picks a side.
+    if (prefersDark && prefersDark.addEventListener) {
+      prefersDark.addEventListener('change', function () {
+        if (!body.classList.contains('dark') && !body.classList.contains('light')) {
+          syncButton();
+        }
+      });
+    }
+
+    syncButton();
+  }
+
   /* ---------- footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
