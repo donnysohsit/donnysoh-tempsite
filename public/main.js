@@ -92,6 +92,34 @@
     sections.forEach(function (section) { observer.observe(section); });
   }
 
+  /* ---------- back to top ---------- */
+  // Shown once the hero has scrolled out of view above the viewport.
+  var backToTop = document.getElementById('back-to-top');
+  var hero = document.getElementById('hero');
+
+  if (backToTop && hero) {
+    var ticking = false;
+
+    function syncBackToTop() {
+      ticking = false;
+      backToTop.classList.toggle('is-visible', hero.getBoundingClientRect().bottom <= 0);
+    }
+
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(syncBackToTop);
+    }, { passive: true });
+
+    backToTop.addEventListener('click', function () {
+      // html { scroll-behavior } makes this smooth, or instant under
+      // prefers-reduced-motion.
+      window.scrollTo(0, 0);
+    });
+
+    syncBackToTop();
+  }
+
   /* ---------- repositories ---------- */
   var grid = document.getElementById('repos-grid');
   var status = document.getElementById('repos-status');
